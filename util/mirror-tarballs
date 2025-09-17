@@ -965,12 +965,11 @@ cd ..
 
 #################################
 
-rm *.tar.gz
-rm *.tar.bz2
+rm *.tar.gz *.tar.bz2
 
 cd ..
 cp $root/util/configure ./ || exit 1
-cp $root/README.markdown ./ || exit 1
+cp $root/README.md ./ || exit 1
 cp $root/util/install bundle/ || exit 1
 mkdir util || exit 1
 cp $root/util/package-win32.sh util/ || exit 1
