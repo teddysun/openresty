@@ -1,8 +1,8 @@
 #!/bin/bash
 
-PCRE=pcre2-10.45
+PCRE=pcre2-10.46
 ZLIB=zlib-1.3.1
-OPENSSL=openssl-3.5.1
+OPENSSL=openssl-3.5.3
 JOBS=12
 
 if [ ! -f ../$OPENSSL.tar.gz ]; then wget -O ../$OPENSSL.tar.gz https://github.com/openssl/openssl/releases/download/$OPENSSL/$OPENSSL.tar.gz; fi
@@ -19,7 +19,7 @@ tar -xf ../../../$PCRE.tar.gz || exit 1
 cd ../..
 
 cd objs/lib/$OPENSSL || exit 1
-patch -p1 < ../../../patches/openssl-3.5.2-sess_set_get_cb_yield.patch || exit 1
+patch -p1 < ../../../patches/openssl-3.5.3-sess_set_get_cb_yield.patch || exit 1
 cd ../../..
 
     #--with-openssl-opt="no-asm" \
@@ -35,9 +35,11 @@ cd ../../..
     --without-lua_rds_parser \
     --with-ipv6 \
     --with-stream \
+    --with-stream_realip_module \
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module \
     --with-http_v2_module \
+    --with-http_v3_module \
     --without-mail_pop3_module \
     --without-mail_imap_module \
     --without-mail_smtp_module \
@@ -53,6 +55,9 @@ cd ../../..
     --with-http_flv_module \
     --with-http_mp4_module \
     --with-http_gunzip_module \
+    --with-http_slice_module \
+    --with-http_image_filter_module \
+    --with-http_xslt_module \
     --with-select_module \
     --with-luajit-xcflags="-DLUAJIT_NUMMODE=2 -DLUAJIT_ENABLE_LUA52COMPAT" \
     --with-pcre=objs/lib/$PCRE \
