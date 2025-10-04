@@ -56,8 +56,6 @@ cd ../../..
     --with-http_mp4_module \
     --with-http_gunzip_module \
     --with-http_slice_module \
-    --with-http_image_filter_module \
-    --with-http_xslt_module \
     --with-select_module \
     --with-luajit-xcflags="-DLUAJIT_NUMMODE=2 -DLUAJIT_ENABLE_LUA52COMPAT" \
     --with-pcre=objs/lib/$PCRE \
