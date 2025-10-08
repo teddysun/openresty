@@ -33,7 +33,6 @@ cd ../../..
     --without-http_rds_json_module \
     --without-http_rds_csv_module \
     --without-lua_rds_parser \
-    --with-ipv6 \
     --with-stream \
     --with-stream_realip_module \
     --with-stream_ssl_module \
