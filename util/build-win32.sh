@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PCRE=pcre2-10.47
-ZLIB=zlib-1.3.1
+ZLIB=zlib-1.3.2
 OPENSSL=openssl-3.5.5
 
 if [ ! -f ../$OPENSSL.tar.gz ]; then curl -Lo ../$OPENSSL.tar.gz https://github.com/openssl/openssl/releases/download/$OPENSSL/$OPENSSL.tar.gz; fi
