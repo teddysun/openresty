@@ -71,6 +71,8 @@ __DATA__
                                      the lua-resty-shell library)
   --without-lua_resty_shell          disable the lua-resty-shell library
   --without-lua_resty_core           disable the lua-resty-core library
+  --without-lua_resty_rsa            disable the lua-resty-rsa library
+  --without-lua_resty_openssl        disable the lua-resty-openssl library
 
   --with-luajit=DIR                  use the external LuaJIT 2.1 installation specified by DIR
   --with-luajit-xcflags=FLAGS        Specify extra C compiler flags for LuaJIT 2.1
@@ -297,7 +299,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -337,7 +339,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -347,6 +349,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -387,7 +391,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -427,7 +431,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -437,6 +441,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -477,7 +483,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -517,7 +523,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -527,6 +533,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -567,7 +575,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -607,7 +615,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -617,6 +625,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -656,7 +666,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../form-input-nginx-module-0.12 \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -696,7 +706,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -706,6 +716,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -745,7 +757,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../form-input-nginx-module-0.12 \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -785,7 +797,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -795,6 +807,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -871,6 +885,8 @@ clean:
                                      the lua-resty-shell library)
   --without-lua_resty_shell          disable the lua-resty-shell library
   --without-lua_resty_core           disable the lua-resty-core library
+  --without-lua_resty_rsa            disable the lua-resty-rsa library
+  --without-lua_resty_openssl        disable the lua-resty-openssl library
 
   --with-luajit=DIR                  use the external LuaJIT 2.1 installation specified by DIR
   --with-luajit-xcflags=FLAGS        Specify extra C compiler flags for LuaJIT 2.1
@@ -1087,7 +1103,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../drizzle-nginx-module-0.1.12 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1127,7 +1143,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1137,6 +1153,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1178,7 +1196,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../drizzle-nginx-module-0.1.12 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1218,7 +1236,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1228,6 +1246,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1282,7 +1302,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../drizzle-nginx-module-0.1.12 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1322,7 +1342,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1332,6 +1352,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1372,7 +1394,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1412,7 +1434,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1422,6 +1444,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1465,7 +1489,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1505,7 +1529,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1515,6 +1539,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1556,7 +1582,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1596,7 +1622,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1606,6 +1632,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1619,7 +1647,7 @@ install: all
 clean:
 	rm -rf build *.exe *.dll openresty-*
 --- err
-Can't exec "cl": No such file or directory at ./configure line 719.
+Can't exec "cl": No such file or directory at ./configure line 725.
 
 
 
@@ -1662,7 +1690,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../ngx_postgres-1.0 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1702,7 +1730,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1712,6 +1740,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1753,7 +1783,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1793,7 +1823,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1803,6 +1833,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1874,7 +1906,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -1914,7 +1946,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -1924,6 +1956,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -1964,7 +1998,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2004,7 +2038,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2014,6 +2048,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2054,7 +2090,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2094,7 +2130,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2104,6 +2140,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2144,7 +2182,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2184,7 +2222,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2194,6 +2232,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2234,7 +2274,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2274,7 +2314,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2284,6 +2324,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2324,7 +2366,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2364,7 +2406,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2374,6 +2416,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2417,7 +2461,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2457,7 +2501,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2467,6 +2511,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2480,8 +2526,8 @@ install: all
 clean:
 	rm -rf build *.exe *.dll openresty-*
 --- err
-Can't exec "sw_vers": No such file or directory at ./configure line 793.
-Use of uninitialized value $v in scalar chomp at ./configure line 794.
+Can't exec "sw_vers": No such file or directory at ./configure line 799.
+Use of uninitialized value $v in scalar chomp at ./configure line 800.
 
 
 
@@ -2511,7 +2557,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2551,7 +2597,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2561,6 +2607,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2601,7 +2649,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2639,7 +2687,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2649,6 +2697,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2689,7 +2739,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2729,7 +2779,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2738,6 +2788,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-core-0.1.33rc2 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/resty-cli-0.32 && $(INSTALL) bin/* $(DESTDIR)/usr/local/openresty/bin/
@@ -2777,7 +2829,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2817,7 +2869,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2826,6 +2878,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-core-0.1.33rc2 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2866,7 +2920,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2904,7 +2958,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2913,6 +2967,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-core-0.1.33rc2 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -2953,7 +3009,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -2989,7 +3045,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -2999,6 +3055,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3039,7 +3097,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3077,7 +3135,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3087,6 +3145,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3123,7 +3183,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3161,7 +3221,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3171,6 +3231,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3211,7 +3273,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3251,7 +3313,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3261,6 +3323,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3301,7 +3365,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3341,7 +3405,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3351,6 +3415,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3391,7 +3457,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3431,7 +3497,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3441,6 +3507,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3481,7 +3549,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3521,7 +3589,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3531,6 +3599,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3571,7 +3641,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3610,7 +3680,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-rds-parser-0.06 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_INCLUDE_DIR=$OPENRESTY_BUILD_DIR/luajit-root/usr/local/openresty/luajit/include/luajit-2.1 LUA_LIB_DIR=/usr/local/openresty/lualib CC=cc
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3620,6 +3690,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3660,7 +3732,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3699,7 +3771,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-rds-parser-0.06 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_INCLUDE_DIR=$OPENRESTY_BUILD_DIR/luajit-root/usr/local/openresty/luajit/include/luajit-2.1 LUA_LIB_DIR=/usr/local/openresty/lualib CC=cc
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3709,6 +3781,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3749,7 +3823,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3789,7 +3863,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3799,6 +3873,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3840,7 +3916,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3880,7 +3956,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3890,6 +3966,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -3930,7 +4008,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -3970,7 +4048,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -3980,6 +4058,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4020,7 +4100,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4060,7 +4140,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4070,6 +4150,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4110,7 +4192,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4150,7 +4232,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4160,6 +4242,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4200,7 +4284,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4240,7 +4324,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4250,6 +4334,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4290,7 +4376,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4330,7 +4416,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4340,6 +4426,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4380,7 +4468,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4419,7 +4507,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-rds-parser-0.06 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_INCLUDE_DIR=$OPENRESTY_BUILD_DIR/luajit-root/usr/local/openresty/luajit/include/luajit-2.1 LUA_LIB_DIR=/usr/local/openresty/lualib CC=cc
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4429,6 +4517,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4469,7 +4559,7 @@ sh ./configure --prefix=./nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4511,7 +4601,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
@@ -4521,6 +4611,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)./bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)./bin/'
@@ -4561,7 +4653,7 @@ sh ./configure --prefix=./nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4603,7 +4695,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
@@ -4613,6 +4705,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)./bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)./bin/'
@@ -4653,7 +4747,7 @@ sh ./configure --prefix=./nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4695,7 +4789,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
@@ -4705,6 +4799,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)./bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)./bin/'
@@ -4748,7 +4844,7 @@ sh ./configure --prefix=. \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4787,7 +4883,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
@@ -4796,6 +4892,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-core-0.1.33rc2 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=./lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)./'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)./'
@@ -4835,7 +4933,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4875,7 +4973,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4885,6 +4983,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -4925,7 +5025,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -4965,7 +5065,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -4975,6 +5075,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5015,7 +5117,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5055,7 +5157,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5065,6 +5167,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5105,7 +5209,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5145,7 +5249,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5155,6 +5259,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5195,7 +5301,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5235,7 +5341,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5245,6 +5351,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5285,7 +5393,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5325,7 +5433,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5335,6 +5443,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5375,7 +5485,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5415,7 +5525,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5425,6 +5535,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5465,7 +5577,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5505,7 +5617,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5515,6 +5627,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5594,7 +5708,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5604,6 +5718,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5637,7 +5753,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../form-input-nginx-module-0.12 \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5701,7 +5817,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5741,7 +5857,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5751,6 +5867,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
@@ -5790,7 +5908,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../form-input-nginx-module-0.12 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5844,7 +5962,7 @@ sh ./configure --prefix=/usr/local/openresty/nginx \
   --add-module=../encrypted-session-nginx-module-0.09 \
   --add-module=../srcache-nginx-module-0.33 \
   --add-module=../ngx_lua-0.10.30rc2 \
-  --add-module=../ngx_lua_upstream-0.07 \
+  --add-module=../ngx_lua_upstream-0.08 \
   --add-module=../headers-more-nginx-module-0.39 \
   --add-module=../array-var-nginx-module-0.06 \
   --add-module=../memc-nginx-module-0.20 \
@@ -5884,7 +6002,7 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-dns-0.23 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-memcached-0.17 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-redis-0.33 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
-	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.28 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-mysql-0.30 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-string-0.16 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upload-0.11 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-websocket-0.13 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
@@ -5894,6 +6012,8 @@ install: all
 	cd $OPENRESTY_BUILD_DIR/lua-resty-upstream-healthcheck-0.08 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-limit-traffic-0.09 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-resty-shell-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-rsa-1.1.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
+	cd $OPENRESTY_BUILD_DIR/lua-resty-openssl-1.7.1 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	cd $OPENRESTY_BUILD_DIR/lua-tablepool-0.03 && $(MAKE) install DESTDIR=$(DESTDIR) LUA_LIB_DIR=/usr/local/openresty/lualib INSTALL='$(INSTALL)'
 	mkdir -p '$(DESTDIR)/usr/local/openresty/bin/'
 	cd $OPENRESTY_BUILD_DIR/opm-0.0.9 && $(INSTALL) bin/* '$(DESTDIR)/usr/local/openresty/bin/'
