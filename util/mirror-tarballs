@@ -593,6 +593,13 @@ echo "$info_txt applying the reuseport_close_unused_fds patch for nginx"
 patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-reuseport_close_unused_fds.patch || exit 1
 echo
 
+answer=`$root/util/ver-ge "$main_ver" 1.31.0`
+if [ $answer = "Y" ]; then
+    # supress the memory leak warning in valgrind mode.
+    echo "$info_txt applying the upstream_ssl_session_cleanup patch for nginx"
+    patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-upstream_ssl_session_cleanup.patch || exit 1
+    echo
+fi
 
 answer=`$root/util/ver-ge "$main_ver" 1.19.9`
 if [ "$answer" = "Y" ]; then
