@@ -575,6 +575,38 @@ if [ "$answer" = "Y" ]; then
         echo "$info_txt applying the patch for nginx security advisory (CVE-2026-27654)"
         patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-27654.patch || exit 1
     fi
+
+    answer=`$root/util/ver-ge "$main_ver" 1.31.0`
+    if [ "$answer" = "N" ]; then
+        answer=`$root/util/ver-ge "$main_ver" 1.27.1`
+        if [ "$answer" = "Y" ]; then
+            # HTTP/3 address spoofing
+            echo "$info_txt applying the patch for nginx security advisory (CVE-2026-40460)"
+            patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-40460.patch || exit 1
+        fi
+
+        # resolver use-after-free in OCSP
+        echo "$info_txt applying the patch for nginx security advisory (CVE-2026-40701)"
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-40701.patch || exit 1
+
+        answer=`$root/util/ver-ge "$main_ver" 1.29.4`
+        if [ "$answer" = "Y" ]; then
+            # HTTP/2 request injection in the ngx_http_proxy_module
+            echo "$info_txt applying the patch for nginx security advisory (CVE-2026-42926)"
+            patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-42926.patch || exit 1
+        fi
+
+        # Buffer overread in the ngx_http_charset_module
+        echo "$info_txt applying the patch for nginx security advisory (CVE-2026-42934)"
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-42934.patch || exit 1
+
+        # Buffer overflow in the ngx_http_rewrite_module
+        echo "$info_txt applying the patch for nginx security advisory (CVE-2026-42945)"
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-42945.patch || exit 1
+
+        echo "$info_txt applying the patch for nginx security advisory (CVE-2026-42946)"
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-42946.patch || exit 1
+    fi
 fi
 
 echo "$info_txt applying the upstream_timeout_fields patch for nginx"
@@ -619,9 +651,11 @@ if [ "$answer" = "Y" ]; then
     patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-quic_ssl_lua_yield.patch || exit 1
 fi
 
-cp $root/html/index.html html/ || exit 1
-cp $root/html/50x.html html/ || exit 1
-
+answer=`$root/util/ver-ge "$main_ver" 1.27.1`
+if [ "$answer" = "Y" ]; then
+    echo "$info_txt applying nginx-$main_ver-http2_subreq_error_wakeup patch for nginx"
+    patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-http2_subreq_error_wakeup.patch || exit 1
+fi
 cd .. || exit 1
 
 cp $root/patches/nginx/$main_ver/nginx-$main_ver-no_pool.patch ./nginx-no_pool.patch || exit 1
@@ -640,7 +674,7 @@ mv openresty-echo-nginx-module-* echo-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.06
+ver=0.07
 $root/util/get-tarball "https://github.com/openresty/xss-nginx-module/tarball/v$ver" -O xss-nginx-module-$ver.tar.gz || exit 1
 tar -xzf xss-nginx-module-$ver.tar.gz || exit 1
 mv openresty-xss-nginx-module-* xss-nginx-module-$ver || exit 1
@@ -682,7 +716,7 @@ mv openresty-headers-more-nginx-module-* headers-more-nginx-module-$ver || exit 
 
 #################################
 
-ver=0.1.12
+ver=0.1.13
 $root/util/get-tarball "https://github.com/openresty/drizzle-nginx-module/tarball/v$ver" -O drizzle-nginx-module-$ver.tar.gz || exit 1
 tar -xzf drizzle-nginx-module-$ver.tar.gz || exit 1
 mv openresty-drizzle-nginx-module-* drizzle-nginx-module-$ver || exit 1
@@ -803,7 +837,7 @@ mv openresty-opm-* opm-$ver || exit 1
 
 #################################
 
-ver=2.1-20260311
+ver=2.1-20260415
 $root/util/get-tarball "https://github.com/openresty/luajit2/archive/v$ver.tar.gz" -O "LuaJIT-$ver.tar.gz" || exit 1
 tar -xzf LuaJIT-$ver.tar.gz || exit 1
 mv luajit2-* LuaJIT-$ver || exit 1
@@ -816,7 +850,7 @@ cd .. || exit 1
 
 #################################
 
-ver=2.1.0.15
+ver=2.1.0.17
 $root/util/get-tarball "https://github.com/openresty/lua-cjson/archive/$ver.tar.gz" -O "lua-cjson-$ver.tar.gz" || exit 1
 tar -xzf lua-cjson-$ver.tar.gz || exit 1
 
@@ -946,7 +980,7 @@ cd ..
 
 #################################
 
-ver=0.16
+ver=0.17
 $root/util/get-tarball "https://github.com/openresty/lua-resty-string/tarball/v$ver" -O "lua-resty-string-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-string-$ver.tar.gz || exit 1
 mv openresty-lua-resty-string-* lua-resty-string-$ver || exit 1
@@ -997,7 +1031,7 @@ mv openresty-lua-resty-core-* lua-resty-core-$ver || exit 1
 
 #################################
 
-ver=0.08
+ver=0.09
 $root/util/get-tarball "https://github.com/openresty/lua-resty-upstream-healthcheck/tarball/v$ver" -O "lua-resty-upstream-healthcheck-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-upstream-healthcheck-$ver.tar.gz || exit 1
 mv openresty-lua-resty-upstream-healthcheck-* lua-resty-upstream-healthcheck-$ver || exit 1
