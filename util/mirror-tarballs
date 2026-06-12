@@ -575,6 +575,11 @@ if [ "$answer" = "Y" ]; then
         echo "$info_txt applying the patch for nginx security advisory (CVE-2026-27654)"
         patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-27654.patch || exit 1
     fi
+    answer=`$root/util/ver-ge "$main_ver" 1.29.7`
+    if [ "$answer" = "N" ]; then
+        echo "$info_txt applying the patch for nginx security max_headers directive."
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-max-headers.patch || exit 1
+    fi
 
     answer=`$root/util/ver-ge "$main_ver" 1.31.0`
     if [ "$answer" = "N" ]; then
@@ -614,6 +619,7 @@ if [ "$answer" = "Y" ]; then
         patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-9256.patch || exit 1
     fi
 fi
+
 
 echo "$info_txt applying the upstream_timeout_fields patch for nginx"
 patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-upstream_timeout_fields.patch || exit 1
@@ -729,7 +735,7 @@ mv openresty-drizzle-nginx-module-* drizzle-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.10.31rc2
+ver=0.10.31rc5
 $root/util/get-tarball "https://github.com/openresty/lua-nginx-module/archive/v$ver.tar.gz" -O lua-nginx-module-$ver.tar.gz || exit 1
 tar -xzf lua-nginx-module-$ver.tar.gz || exit 1
 mv lua-nginx-module-$ver ngx_lua-$ver || exit 1
@@ -743,7 +749,7 @@ mv openresty-lua-upstream-nginx-module-* ngx_lua_upstream-$ver || exit 1
 
 #################################
 
-ver=0.0.19rc3
+ver=0.0.19rc4
 $root/util/get-tarball "https://github.com/openresty/stream-lua-nginx-module/tarball/v$ver" -O stream-lua-nginx-module-$ver.tar.gz || exit 1
 tar -xzf stream-lua-nginx-module-$ver.tar.gz || exit 1
 mv openresty-stream-lua-nginx-module-* ngx_stream_lua-$ver || exit 1
@@ -1030,7 +1036,7 @@ cd ..
 
 #################################
 
-ver=0.1.34rc2
+ver=0.1.34rc3
 $root/util/get-tarball "https://github.com/openresty/lua-resty-core/tarball/v$ver" -O "lua-resty-core-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-core-$ver.tar.gz || exit 1
 mv openresty-lua-resty-core-* lua-resty-core-$ver || exit 1

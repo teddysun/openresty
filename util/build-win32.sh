@@ -2,7 +2,7 @@
 
 PCRE=pcre2-10.47
 ZLIB=zlib-1.3.2
-OPENSSL=openssl-3.5.6
+OPENSSL=openssl-3.5.7
 
 if [ ! -f ../$OPENSSL.tar.gz ]; then curl -Lo ../$OPENSSL.tar.gz https://github.com/openssl/openssl/releases/download/$OPENSSL/$OPENSSL.tar.gz; fi
 if [ ! -f ../$ZLIB.tar.gz ]; then curl -Lo ../$ZLIB.tar.gz https://www.zlib.net/$ZLIB.tar.gz; fi
@@ -18,11 +18,12 @@ tar -xzf ../../../$PCRE.tar.gz || exit 1
 cd ../..
 
 cd objs/lib/$OPENSSL || exit 1
-patch -p1 < ../../../patches/openssl-3.5.6-sess_set_get_cb_yield.patch || exit 1
+patch -p1 < ../../../patches/openssl-3.5.7-sess_set_get_cb_yield.patch || exit 1
 cd ../../..
 
 ./configure \
-    --with-cc=cc \
+    --with-cc=gcc \
+    --platform=msys \
     --prefix= \
     --with-cc-opt='-DFD_SETSIZE=1024' \
     --sbin-path=nginx.exe \
