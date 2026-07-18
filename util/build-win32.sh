@@ -31,9 +31,8 @@ cd ../../..
     --without-http_rds_json_module \
     --without-http_rds_csv_module \
     --without-lua_rds_parser \
-    --with-mail \
+    --with-ipv6 \
     --with-stream \
-    --with-stream_realip_module \
     --with-stream_ssl_module \
     --with-stream_ssl_preread_module \
     --with-http_v2_module \
@@ -52,15 +51,12 @@ cd ../../..
     --with-http_flv_module \
     --with-http_mp4_module \
     --with-http_gunzip_module \
-    --with-http_slice_module \
     --with-select_module \
     --with-luajit-xcflags="-DLUAJIT_NUMMODE=2 -DLUAJIT_ENABLE_LUA52COMPAT" \
     --with-pcre=objs/lib/$PCRE \
     --with-zlib=objs/lib/$ZLIB \
     --with-openssl=objs/lib/$OPENSSL \
-    --with-openssl-opt='no-asm no-tests no-makedepend -D_WIN32_WINNT=0x0501' \
-    --with-http_ssl_module \
-    --with-mail_ssl_module \
+    --with-openssl-opt='no-asm no-tests no-makedepend -D_WIN32_WINNT=0x0501'
     -j`nproc` || exit 1
 
 make -j`nproc` || exit 1

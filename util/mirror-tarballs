@@ -5,6 +5,26 @@ root=`perl -MCwd -e'print Cwd::abs_path(shift)' $(dirname -- "$0")/..`
 
 info_txt=`perl -e 'print "\033[33m[INFO]\033[0m"'`
 
+mirror_jobs=${MIRROR_JOBS:-}
+if [ -z "$mirror_jobs" ]; then
+    if command -v nproc > /dev/null 2>&1; then
+        mirror_jobs=$(nproc)
+    elif command -v getconf > /dev/null 2>&1; then
+        mirror_jobs=$(getconf _NPROCESSORS_ONLN 2>/dev/null)
+    elif command -v sysctl > /dev/null 2>&1; then
+        mirror_jobs=$(sysctl -n hw.ncpu 2>/dev/null)
+    fi
+fi
+
+case "$mirror_jobs" in
+    ''|*[!0-9]*|0)
+        echo "MIRROR_JOBS must be a positive integer." >&2
+        exit 1
+        ;;
+esac
+
+echo "$info_txt using $mirror_jobs parallel jobs"
+
 echo -n "openresty "
 . ./util/ver
 echo
@@ -617,6 +637,12 @@ if [ "$answer" = "Y" ]; then
     if [ "$answer" = "N" ]; then
         echo "$info_txt applying the patch for nginx security advisory (CVE-2026-9256)"
         patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-9256.patch || exit 1
+
+        echo "$info_txt applying the patch for nginx security advisory (CVE-2026-42055.patch)"
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-42055.patch || exit 1
+
+        echo "$info_txt applying the patch for nginx security advisory (CVE-2026-48142)"
+        patch -p1 < $root/patches/nginx/$main_ver/nginx-$main_ver-CVE-2026-48142.patch || exit 1
     fi
 fi
 
@@ -679,7 +705,7 @@ rm -rf no-pool-nginx-$ver
 
 #################################
 
-ver=0.64
+ver=0.65
 $root/util/get-tarball "https://github.com/openresty/echo-nginx-module/tarball/v$ver" -O echo-nginx-module-$ver.tar.gz || exit 1
 tar -xzf echo-nginx-module-$ver.tar.gz || exit 1
 mv openresty-echo-nginx-module-* echo-nginx-module-$ver || exit 1
@@ -693,14 +719,14 @@ mv openresty-xss-nginx-module-* xss-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.3.4
-$root/util/get-tarball "https://github.com/simplresty/ngx_devel_kit/tarball/v$ver" -O ngx_devel_kit-$ver.tar.gz
+ver=0.3.5
+$root/util/get-tarball "https://github.com/openresty/ngx_devel_kit/tarball/v$ver" -O ngx_devel_kit-$ver.tar.gz
 tar -xzf ngx_devel_kit-$ver.tar.gz || exit 1
-mv vision5-ngx_devel_kit-* ngx_devel_kit-$ver || exit 1
+mv openresty-ngx_devel_kit-* ngx_devel_kit-$ver || exit 1
 
 #################################
 
-ver=0.33
+ver=0.34
 $root/util/get-tarball "https://github.com/openresty/set-misc-nginx-module/tarball/v$ver" -O set-misc-nginx-module-$ver.tar.gz || exit 1
 tar -xzf set-misc-nginx-module-$ver.tar.gz || exit 1
 mv openresty-set-misc-nginx-module-* set-misc-nginx-module-$ver || exit 1
@@ -721,21 +747,21 @@ mv openresty-rds-csv-nginx-module-* rds-csv-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.39
+ver=0.40
 $root/util/get-tarball "https://github.com/openresty/headers-more-nginx-module/tarball/v$ver" -O headers-more-nginx-module-$ver.tar.gz || exit 1
 tar -xzf headers-more-nginx-module-$ver.tar.gz || exit 1
 mv openresty-headers-more-nginx-module-* headers-more-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.1.13
+ver=0.1.14
 $root/util/get-tarball "https://github.com/openresty/drizzle-nginx-module/tarball/v$ver" -O drizzle-nginx-module-$ver.tar.gz || exit 1
 tar -xzf drizzle-nginx-module-$ver.tar.gz || exit 1
 mv openresty-drizzle-nginx-module-* drizzle-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.10.31
+ver=0.10.32rc3
 $root/util/get-tarball "https://github.com/openresty/lua-nginx-module/archive/v$ver.tar.gz" -O lua-nginx-module-$ver.tar.gz || exit 1
 tar -xzf lua-nginx-module-$ver.tar.gz || exit 1
 mv lua-nginx-module-$ver ngx_lua-$ver || exit 1
@@ -749,7 +775,7 @@ mv openresty-lua-upstream-nginx-module-* ngx_lua_upstream-$ver || exit 1
 
 #################################
 
-ver=0.0.19rc4
+ver=0.0.20rc2
 $root/util/get-tarball "https://github.com/openresty/stream-lua-nginx-module/tarball/v$ver" -O stream-lua-nginx-module-$ver.tar.gz || exit 1
 tar -xzf stream-lua-nginx-module-$ver.tar.gz || exit 1
 mv openresty-stream-lua-nginx-module-* ngx_stream_lua-$ver || exit 1
@@ -763,14 +789,14 @@ mv openresty-array-var-nginx-module-* array-var-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.20
+ver=0.21
 $root/util/get-tarball "https://github.com/openresty/memc-nginx-module/tarball/v$ver" -O memc-nginx-module-$ver.tar.gz || exit 1
 tar -xzf memc-nginx-module-$ver.tar.gz || exit 1
 mv openresty-memc-nginx-module-* memc-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.33
+ver=0.34
 $root/util/get-tarball "https://github.com/openresty/srcache-nginx-module/tarball/v$ver" -O srcache-nginx-module-$ver.tar.gz || exit 1
 tar -xzf srcache-nginx-module-$ver.tar.gz || exit 1
 mv openresty-srcache-nginx-module-* srcache-nginx-module-$ver || exit 1
@@ -791,7 +817,7 @@ mv calio-iconv-nginx-module-* iconv-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.09
+ver=0.10
 $root/util/get-tarball "https://github.com/openresty/encrypted-session-nginx-module/tarball/v$ver" -O encrypted-session-nginx-module-$ver.tar.gz || exit 1
 tar -xzf encrypted-session-nginx-module-$ver.tar.gz || exit 1
 mv openresty-encrypted-session-nginx-module-* encrypted-session-nginx-module-$ver || exit 1
@@ -813,7 +839,7 @@ mv ngx_http_redis-* redis-nginx-module-$ver || exit 1
 
 #################################
 
-ver=1.0
+ver=1.1
 $root/util/get-tarball "https://github.com/openresty/ngx_postgres/tarball/$ver" -O ngx_postgres-$ver.tar.gz || exit 1
 tar -xzf ngx_postgres-$ver.tar.gz || exit 1
 mv openresty-ngx_postgres-* ngx_postgres-$ver || exit 1
@@ -834,7 +860,7 @@ mv openresty-redis2-nginx-module-* redis2-nginx-module-$ver || exit 1
 
 #################################
 
-ver=0.32
+ver=0.36
 $root/util/get-tarball "https://github.com/openresty/resty-cli/tarball/v$ver" -O resty-cli-$ver.tar.gz || exit 1
 tar -xzf resty-cli-$ver.tar.gz || exit 1
 mv openresty-resty-cli-* resty-cli-$ver || exit 1
@@ -842,14 +868,14 @@ resty_cli=resty-cli-$ver
 
 #################################
 
-ver=0.0.9
+ver=0.0.10
 $root/util/get-tarball "https://github.com/openresty/opm/tarball/v$ver" -O opm-$ver.tar.gz || exit 1
 tar -xzf opm-$ver.tar.gz || exit 1
 mv openresty-opm-* opm-$ver || exit 1
 
 #################################
 
-ver=2.1-20260606
+ver=2.1-20260717
 $root/util/get-tarball "https://github.com/openresty/luajit2/archive/v$ver.tar.gz" -O "LuaJIT-$ver.tar.gz" || exit 1
 tar -xzf LuaJIT-$ver.tar.gz || exit 1
 mv luajit2-* LuaJIT-$ver || exit 1
@@ -862,7 +888,7 @@ cd .. || exit 1
 
 #################################
 
-ver=2.1.0.17
+ver=2.1.0.19
 $root/util/get-tarball "https://github.com/openresty/lua-cjson/archive/$ver.tar.gz" -O "lua-cjson-$ver.tar.gz" || exit 1
 tar -xzf lua-cjson-$ver.tar.gz || exit 1
 
@@ -896,7 +922,7 @@ cd ..
 
 #################################
 
-ver=0.17
+ver=0.18
 $root/util/get-tarball "https://github.com/openresty/lua-resty-memcached/tarball/v$ver" -O "lua-resty-memcached-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-memcached-$ver.tar.gz || exit 1
 mv openresty-lua-resty-memcached-* lua-resty-memcached-$ver || exit 1
@@ -914,7 +940,7 @@ mv openresty-lua-resty-redis-* lua-resty-redis-$ver || exit 1
 
 #################################
 
-ver=0.30
+ver=0.31
 $root/util/get-tarball "https://github.com/openresty/lua-resty-mysql/tarball/v$ver" -O "lua-resty-mysql-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-mysql-$ver.tar.gz || exit 1
 mv openresty-lua-resty-mysql-* lua-resty-mysql-$ver || exit 1
@@ -933,7 +959,7 @@ mv mk Makefile || exit 1
 cd ..
 #################################
 
-ver=1.7.1
+ver=1.8.0
 $root/util/get-tarball "https://github.com/fffonion/lua-resty-openssl/archive/refs/tags/$ver.tar.gz" -O lua-resty-openssl-$ver.tar.gz || exit 1
 tar -xzf lua-resty-openssl-$ver.tar.gz || exit 1
 cd lua-resty-openssl-$ver || exit 1
@@ -992,7 +1018,7 @@ cd ..
 
 #################################
 
-ver=0.17
+ver=0.19
 $root/util/get-tarball "https://github.com/openresty/lua-resty-string/tarball/v$ver" -O "lua-resty-string-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-string-$ver.tar.gz || exit 1
 mv openresty-lua-resty-string-* lua-resty-string-$ver || exit 1
@@ -1003,7 +1029,7 @@ cd ..
 
 #################################
 
-ver=0.13
+ver=0.14
 $root/util/get-tarball "https://github.com/openresty/lua-resty-websocket/tarball/v$ver" -O "lua-resty-websocket-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-websocket-$ver.tar.gz || exit 1
 mv openresty-lua-resty-websocket-* lua-resty-websocket-$ver || exit 1
@@ -1036,14 +1062,14 @@ cd ..
 
 #################################
 
-ver=0.1.34rc3
+ver=0.1.35rc1
 $root/util/get-tarball "https://github.com/openresty/lua-resty-core/tarball/v$ver" -O "lua-resty-core-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-core-$ver.tar.gz || exit 1
 mv openresty-lua-resty-core-* lua-resty-core-$ver || exit 1
 
 #################################
 
-ver=0.09
+ver=0.10
 $root/util/get-tarball "https://github.com/openresty/lua-resty-upstream-healthcheck/tarball/v$ver" -O "lua-resty-upstream-healthcheck-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-upstream-healthcheck-$ver.tar.gz || exit 1
 mv openresty-lua-resty-upstream-healthcheck-* lua-resty-upstream-healthcheck-$ver || exit 1
@@ -1065,7 +1091,7 @@ cd ..
 
 #################################
 
-ver=0.04
+ver=0.05
 $root/util/get-tarball "https://github.com/openresty/lua-resty-signal/tarball/v$ver" -O "lua-resty-signal-$ver.tar.gz" || exit 1
 tar -xzf lua-resty-signal-$ver.tar.gz || exit 1
 mv openresty-lua-resty-signal-* lua-resty-signal-$ver || exit 1
@@ -1102,11 +1128,11 @@ unix2dos README-windows.txt || exit 1
 mkdir patches/ || exit 1
 cp $root/patches/openssl-*.patch patches/ || exit 1
 
-restydoc_index=$bundle_dir/$resty_cli/bin/restydoc-index
+restydoc_index=${RESTYDOC_INDEX:-$bundle_dir/$resty_cli/bin/restydoc-index}
 #restydoc_index=echo
 #restydoc_index=$HOME/git/resty-cli/bin/restydoc-index
 
-nginx_xml2pod=$bundle_dir/$resty_cli/bin/nginx-xml2pod
+nginx_xml2pod=${NGINX_XML2POD:-$bundle_dir/$resty_cli/bin/nginx-xml2pod}
 #nginx_xml2pod=echo
 #nginx_xml2pod=$HOME/git/resty-cli/bin/nginx-xml2pod
 
@@ -1118,7 +1144,9 @@ if [ -d nginx.org ]; then
     if [ -f nginx.org/.git/config ];then
         cd nginx.org/ || exit 1
         git checkout -f || exit 1
-        git pull || exit 1
+        if [ -z "$MIRROR_SKIP_NGINX_DOCS_UPDATE" ]; then
+            git pull || exit 1
+        fi
         cd ..
     else
         rm -rf nginx.org || exit 1
@@ -1131,7 +1159,8 @@ cd nginx.org/ || exit 1
 git clean -f || exit 1
 find xml/en/docs -name 'ngx_http_api_module.xml' -delete
 rm xml/en/docs/njs/*
-$nginx_xml2pod xml/en/docs || exit 1
+find xml/en/docs -type f -name '*.xml' -print0 \
+    | xargs -0 -n 1 -P "$mirror_jobs" "$nginx_xml2pod" || exit 1
 cd $curdir || exit 1
 
 echo "restydoc-index $root/work/nginx.org"
@@ -1143,8 +1172,9 @@ $restydoc_index --outdir bundle $root/doc/lua-5.1.5 || exit 1
 echo "restydoc-index $root/doc/LuaJIT-2.1"
 $restydoc_index --outdir bundle $root/doc/LuaJIT-2.1 || exit 1
 
-# generate restydoc index from openresty docs
+# generate restydoc index from openresty docs in parallel
 
+restydoc_dirs=()
 for indir in bundle/*/; do
     #echo "processing directory $indir ..."
     if [ "$indir" == "bundle/pod/" ]; then
@@ -1154,8 +1184,39 @@ for indir in bundle/*/; do
         continue
     fi
     echo "restydoc-index --outdir bundle $indir"
-    $restydoc_index --outdir $curdir/bundle $indir || exit 1
+    restydoc_dirs+=("$indir")
 done
+
+restydoc_tmp="$curdir/.restydoc-tmp"
+rm -rf "$restydoc_tmp" || exit 1
+mkdir -p "$restydoc_tmp" || exit 1
+
+if [ ${#restydoc_dirs[@]} -gt 0 ]; then
+    printf '%s\0' "${restydoc_dirs[@]}" \
+        | xargs -0 -n 1 -P "$mirror_jobs" bash -c '
+            restydoc_index=$1
+            restydoc_tmp=$2
+            indir=$3
+            restydoc_name=${indir%/}
+            restydoc_name=${restydoc_name##*/}
+            outdir=$restydoc_tmp/$restydoc_name
+
+            mkdir -p "$outdir" || exit 1
+            "$restydoc_index" --outdir "$outdir" "$indir"
+        ' _ "$restydoc_index" "$restydoc_tmp" || exit 1
+fi
+
+# Merge in the original order so resty.index remains deterministic.
+for indir in "${restydoc_dirs[@]}"; do
+    restydoc_name=${indir%/}
+    restydoc_name=${restydoc_name##*/}
+    outdir=$restydoc_tmp/$restydoc_name
+
+    cat "$outdir/resty.index" >> "$curdir/bundle/resty.index" || exit 1
+    cp -R "$outdir/pod/." "$curdir/bundle/pod/" || exit 1
+done
+
+rm -rf "$restydoc_tmp" || exit 1
 
 cd $curdir || exit 1
 #find bundle -name '*.md' -delete
@@ -1180,4 +1241,8 @@ find bundle -name '*.orig' -delete
 cd $root || exit 1
 
 tar cf $name.tar $name || exit 1
-gzip -f --best $name.tar || exit 1
+if command -v pigz > /dev/null 2>&1; then
+    pigz -f --best $name.tar || exit 1
+else
+    gzip -f --best $name.tar || exit 1
+fi
