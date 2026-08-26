@@ -2,7 +2,8 @@
 
 PCRE=pcre2-10.47
 ZLIB=zlib-1.3.2
-OPENSSL=openssl-3.5.7
+OPENSSL=openssl-3.5.8
+JOBS=12
 
 if [ ! -f ../$OPENSSL.tar.gz ]; then curl -Lo ../$OPENSSL.tar.gz https://github.com/openssl/openssl/releases/download/$OPENSSL/$OPENSSL.tar.gz; fi
 if [ ! -f ../$ZLIB.tar.gz ]; then curl -Lo ../$ZLIB.tar.gz https://www.zlib.net/$ZLIB.tar.gz; fi
@@ -57,7 +58,7 @@ cd ../../..
     --with-zlib=objs/lib/$ZLIB \
     --with-openssl=objs/lib/$OPENSSL \
     --with-openssl-opt='no-asm no-tests no-makedepend -D_WIN32_WINNT=0x0501'
-    -j`nproc` || exit 1
+    -j$JOBS || exit 1
 
-make -j`nproc` || exit 1
+make -j$JOBS || exit 1
 make install
