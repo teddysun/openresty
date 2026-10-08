@@ -29,7 +29,7 @@ index cd55520c..dade1846 100644
  
  typedef struct {
      u_char  ident_hi;
-@@ -131,6 +145,191 @@ static ngx_resolver_node_t *ngx_resolver_lookup_addr6(ngx_resolver_t *r,
+@@ -131,6 +145,203 @@ static ngx_resolver_node_t *ngx_resolver_lookup_addr6(ngx_resolver_t *r,
  #endif
  
  
@@ -146,6 +146,18 @@ index cd55520c..dade1846 100644
 +                if (ngx_strlchr(u.url.data, u.url.data + u.url.len,
 +                                ':') != NULL)
 +                {
++                    if (ngx_strlchr(u.url.data, u.url.data + u.url.len,
++                                    '%') != NULL)
++                    {
++                        ngx_conf_log_error(NGX_LOG_WARN, cf, 0,
++                                           "ignoring IPv6 resolver address"
++                                           " with zone ID: \"%V\"", &u.url);
++
++                        state = sw_nameserver;
++
++                        break;
++                    }
++
 +                    if (u.url.len + 2 > sizeof(ipv6_buf)) {
 +                        ngx_conf_log_error(NGX_LOG_EMERG, cf, 0,
 +                                           "IPv6 resolver address is too long:"
@@ -221,7 +233,7 @@ index cd55520c..dade1846 100644
  ngx_resolver_t *
  ngx_resolver_create(ngx_conf_t *cf, ngx_str_t *names, ngx_uint_t n)
  {
-@@ -246,6 +445,39 @@ ngx_resolver_create(ngx_conf_t *cf, ngx_str_t *names, ngx_uint_t n)
+@@ -246,6 +457,39 @@ ngx_resolver_create(ngx_conf_t *cf, ngx_str_t *names, ngx_uint_t n)
          }
  #endif
  

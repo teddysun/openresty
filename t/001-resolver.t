@@ -383,3 +383,153 @@ successfully connected to openresty.org
 --- grep_error_log_out
 parsed a resolver: "8.8.8.8"
 parsed a resolver: "8.8.4.4"
+
+
+
+=== TEST 12: skip IPv6 zone IDs without consuming MAXNS slots
+--- config
+    resolver local=../html/resolv.conf;
+
+    location = /t {
+        return 200 "done\n";
+    }
+--- user_files eval
+">>> resolv.conf
+nameserver fe80::9683:c4ff:fe35:ac1%enp1s0
+nameserver fe80::1%2
+nameserver 119.29.29.29
+nameserver 2001:4860:4860::8888
+nameserver 8.8.8.8
+"
+--- request
+GET /t
+--- response_body
+done
+--- no_error_log
+[error]
+[emerg]
+--- grep_error_log eval: qr/(?:ignoring IPv6 resolver address with zone ID:|parsed a resolver:) ".+"/
+--- grep_error_log_out
+ignoring IPv6 resolver address with zone ID: "fe80::9683:c4ff:fe35:ac1%enp1s0"
+ignoring IPv6 resolver address with zone ID: "fe80::1%2"
+parsed a resolver: "119.29.29.29"
+parsed a resolver: "[2001:4860:4860::8888]"
+parsed a resolver: "8.8.8.8"
+
+
+
+=== TEST 13: skip IPv6 zone ID at EOF without a newline
+--- config
+    resolver local=../html/resolv.conf;
+
+    location = /t {
+        return 200 "done\n";
+    }
+--- user_files eval
+">>> resolv.conf
+nameserver 119.29.29.29
+nameserver fe80::9683:c4ff:fe35:ac1%enp1s0"
+--- request
+GET /t
+--- response_body
+done
+--- no_error_log
+[error]
+[emerg]
+--- grep_error_log eval: qr/(?:ignoring IPv6 resolver address with zone ID:|parsed a resolver:) ".+"/
+--- grep_error_log_out
+parsed a resolver: "119.29.29.29"
+ignoring IPv6 resolver address with zone ID: "fe80::9683:c4ff:fe35:ac1%enp1s0"
+
+
+
+=== TEST 14: skip IPv6 zone IDs with CRLF and CR line endings
+--- config
+    resolver local=../html/resolv.conf;
+
+    location = /t {
+        return 200 "done\n";
+    }
+--- user_files eval
+">>> resolv.conf
+nameserver fe80::1%eth0\r\nnameserver 119.29.29.29\r\nnameserver fe80::2%3\rnameserver 2001:4860:4860::8888\r"
+--- request
+GET /t
+--- response_body
+done
+--- no_error_log
+[error]
+[emerg]
+--- grep_error_log eval: qr/(?:ignoring IPv6 resolver address with zone ID:|parsed a resolver:) ".+"/
+--- grep_error_log_out
+ignoring IPv6 resolver address with zone ID: "fe80::1%eth0"
+parsed a resolver: "119.29.29.29"
+ignoring IPv6 resolver address with zone ID: "fe80::2%3"
+parsed a resolver: "[2001:4860:4860::8888]"
+
+
+
+=== TEST 15: fail if all nameservers have IPv6 zone IDs
+--- config
+    resolver local=../html/resolv.conf;
+--- user_files eval
+">>> resolv.conf
+nameserver fe80::1%eth0
+"
+--- must_die
+--- error_log
+[warn]
+ignoring IPv6 resolver address with zone ID: "fe80::1%eth0"
+no name servers defined
+--- no_error_log
+unable to parse local resolver
+
+
+
+=== TEST 16: skip IPv6 zone ID before checking the address length
+--- config
+    resolver local=../html/resolv.conf;
+
+    location = /t {
+        return 200 "done\n";
+    }
+--- user_files eval
+">>> resolv.conf
+nameserver fe80:0000:0000:0000:9683:c4ff:fe35:0ac1%enp1s0
+nameserver 119.29.29.29
+"
+--- request
+GET /t
+--- response_body
+done
+--- no_error_log
+[error]
+[emerg]
+--- grep_error_log eval: qr/(?:ignoring IPv6 resolver address with zone ID:|parsed a resolver:) ".+"/
+--- grep_error_log_out
+ignoring IPv6 resolver address with zone ID: "fe80:0000:0000:0000:9683:c4ff:fe35:0ac1%enp1s0"
+parsed a resolver: "119.29.29.29"
+
+
+
+=== TEST 17: explicit resolver remains usable when local nameservers are skipped
+--- config
+    resolver local=../html/resolv.conf 119.29.29.29;
+
+    location = /t {
+        return 200 "done\n";
+    }
+--- user_files eval
+">>> resolv.conf
+nameserver fe80::1%eth0
+"
+--- request
+GET /t
+--- response_body
+done
+--- no_error_log
+[error]
+[emerg]
+--- grep_error_log eval: qr/(?:ignoring IPv6 resolver address with zone ID:|parsed a resolver:) ".+"/
+--- grep_error_log_out
+ignoring IPv6 resolver address with zone ID: "fe80::1%eth0"
